@@ -1,9 +1,10 @@
-package org.mypet.notificationserver.service;
+package org.mypet.notificationserver.service.impl;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.mypet.notificationserver.entity.InboxMessage;
+import org.mypet.notificationserver.service.EmailService;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -24,5 +25,7 @@ public class EmailServiceImpl implements EmailService {
         helper.setTo(inboxMessage.getRecipient());
         helper.setSubject(inboxMessage.getSubject());
         helper.setText(inboxMessage.getMessage(), true);
+
+        mailSender.send(message);
     }
 }

@@ -1,1 +1,7 @@
-spring.application.name=NotificationServer
+spring:
+  application:
+    name: notification-server
+  profiles:
+    active: dev
+  config:
+    import: configserver:http://localhost:8071
